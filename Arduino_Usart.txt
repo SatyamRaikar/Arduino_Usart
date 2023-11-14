@@ -1,0 +1,63 @@
+/*
+  AnalogReadSerial
+
+  Reads an analog input on pin 0, prints the result to the Serial Monitor.
+  Graphical representation is available using Serial Plotter (Tools > Serial Plotter menu).
+  Attach the center pin of a potentiometer to pin A0, and the outside pins to +5V and ground.
+
+  This example code is in the public domain.
+
+  https://www.arduino.cc/en/Tutorial/BuiltInExamples/AnalogReadSerial
+*/
+#include <LiquidCrystal.h>
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  lcd.begin(16, 2);
+  Serial.begin(9600);
+   lcd.setCursor(0,0);
+  lcd.print("RX:");
+   lcd.setCursor(0,1);
+    lcd.print("TX:");
+
+  
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  // read the input on analog pin 0:
+  while(Serial.available() >= 0)
+  {
+    unsigned char a=Serial.read();
+    switch(a)
+    {
+     case 'A':Serial.write('a');
+              lcd.setCursor(3,0);
+              lcd.print('A');
+              lcd.setCursor(3,1);
+              lcd.print('a');
+              break;
+     case 'B':Serial.write('b');
+               lcd.setCursor(3,0);
+              lcd.print('B');
+              lcd.setCursor(3,1);
+              lcd.print('b');
+              break;
+     case 'C':Serial.write('c');
+              lcd.setCursor(3,0);
+              lcd.print('C');
+              lcd.setCursor(3,1);
+              lcd.print('c');
+              break;
+     case 'D':Serial.write('d');
+               lcd.setCursor(3,0);
+              lcd.print('D');
+              lcd.setCursor(3,1);
+              lcd.print('d');
+
+              break;
+
+    }
+  }
+}
